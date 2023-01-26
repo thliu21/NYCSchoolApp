@@ -1,10 +1,3 @@
-//
-//  NYCSchoolsUITests.swift
-//  NYCSchoolsUITests
-//
-//  Created by Arthur Liu on 1/24/23.
-//
-
 import XCTest
 
 final class NYCSchoolsUITests: XCTestCase {

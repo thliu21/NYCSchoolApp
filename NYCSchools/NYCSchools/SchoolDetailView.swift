@@ -3,7 +3,6 @@ import MapKit
 
 struct SchoolDetailView: View {
     static private let fullScore = 800
-    
     var schoolInfo: SchoolInfo
     
     @StateObject private var vm: SchoolSATScoreViewModel
@@ -30,10 +29,10 @@ struct SchoolDetailView: View {
                 SchoolDetailMapView(schoolInfo: schoolInfo)
             }
         }
-        .navigationTitle("\(schoolInfo.schoolName)")
+        .navigationTitle("School details")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            vm.loadSatScore()
+            vm.loadSATScore()
         }
     }
     

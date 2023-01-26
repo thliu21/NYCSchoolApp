@@ -1,10 +1,3 @@
-//
-//  SchoolDetailBasicView.swift
-//  NYCSchools
-//
-//  Created by Arthur Liu on 1/25/23.
-//
-
 import Foundation
 import SwiftUI
 

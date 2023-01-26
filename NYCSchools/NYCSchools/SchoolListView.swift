@@ -8,6 +8,7 @@ struct SchoolListView: View {
         NavigationView {
             List {
                 Section {
+                    // Main list
                     ForEach(vm.schoolInfo) { school in
                         NavigationLink {
                             SchoolDetailView(schoolInfo: school)
@@ -22,6 +23,7 @@ struct SchoolListView: View {
                             }
                         }
                     }
+                    // Footer to trigger reload
                     switch vm.loadingState {
                     case .loaded:
                         Text("(Loading...)")

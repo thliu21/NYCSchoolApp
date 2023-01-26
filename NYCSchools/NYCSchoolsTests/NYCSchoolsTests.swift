@@ -1,10 +1,3 @@
-//
-//  NYCSchoolsTests.swift
-//  NYCSchoolsTests
-//
-//  Created by Arthur Liu on 1/24/23.
-//
-
 import XCTest
 @testable import NYCSchools
 

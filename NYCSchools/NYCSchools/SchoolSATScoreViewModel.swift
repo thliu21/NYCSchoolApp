@@ -15,7 +15,7 @@ class SchoolSATScoreViewModel: ObservableObject {
     
     private let dbn: String
     
-    func loadSatScore() {
+    func loadSATScore() {
         switch loadingState {
         case .notStarted:
             self.loadingState = .loading

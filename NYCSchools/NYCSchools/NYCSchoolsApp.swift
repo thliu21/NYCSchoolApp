@@ -1,10 +1,3 @@
-//
-//  NYCSchoolsApp.swift
-//  NYCSchools
-//
-//  Created by Arthur Liu on 1/24/23.
-//
-
 import SwiftUI
 
 @main

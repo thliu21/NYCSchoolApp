@@ -62,52 +62,45 @@ struct NYCOpenDataConstants {
 struct NYCOpenDatabaseAPI {
     static func fetchSchoolDirectory(offset: Int, limit: Int) -> AnyPublisher<[SchoolInfo], Error> {
         let req = NYCOpenDataConstants.buildSchoolDirectoryUrlRequest(offset: offset, limit: limit)
-        return Future { promise in
+        return Future<Data, Error> { promise in
             let task = URLSession.shared.dataTask(with: req) { data, res, error in
-                guard let data = data else {
-                    if let error = error {
-                        promise(.failure(error))
-                    } else {
-                        promise(.failure(APIError.noDataError))
-                    }
-                    return
+                if let data = data {
+                    promise(.success(data))
+                } else if let error = error {
+                    promise(.failure(error))
                 }
-                do {
-                    let content = try JSONDecoder().decode([SchoolInfo].self, from: data)
-                    promise(.success(content))
-                } catch {
-                    promise(.failure(APIError.parsingError))
-                }
+                promise(.failure(APIError.noDataError))
             }
             task.resume()
+        }
+        .tryMap { data in
+            try JSONDecoder().decode([SchoolInfo].self, from: data)
         }
         .eraseToAnyPublisher()
     }
     
     static func fetchSchoolSATScore(dbn: String) -> AnyPublisher<SchoolSATScoreInfo, Error> {
         let req = NYCOpenDataConstants.buildSchoolSATScoreUrlRequest(dbn: dbn)
-        return Future { promise in
+        return Future<Data, Error> { promise in
             let task = URLSession.shared.dataTask(with: req) { data, res, error in
-                guard let data = data else {
-                    if let error = error {
-                        promise(.failure(error))
-                    } else {
-                        promise(.failure(APIError.noDataError))
-                    }
-                    return
+                if let data = data {
+                    promise(.success(data))
+                } else if let error = error {
+                    promise(.failure(error))
                 }
-                do {
-                    let content = try JSONDecoder().decode([SchoolSATScoreInfo].self, from: data)
-                    if let first = content.first {
-                        promise(.success(first))
-                    } else {
-                        promise(.failure(APIError.noDataError))
-                    }
-                } catch {
-                    promise(.failure(APIError.parsingError))
-                }
+                promise(.failure(APIError.noDataError))
             }
             task.resume()
+        }
+        .tryMap { data in
+            try JSONDecoder().decode([SchoolSATScoreInfo].self, from: data)
+        }
+        .tryMap { info in
+            if let info = info.first {
+                return info
+            } else {
+                throw APIError.noDataError
+            }
         }
         .eraseToAnyPublisher()
     }

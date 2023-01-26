@@ -6,7 +6,7 @@ class SchoolListViewModel: ObservableObject {
         case loading, loaded, failed, finished
     }
     
-    private static let initialLoadingBatchSize = 70
+    private static let initialLoadingBatchSize = 40
     private static let loadingBatchSize = 20
     
     @Published var loadingState = APILoadingState.loaded

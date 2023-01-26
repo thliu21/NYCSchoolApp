@@ -21,9 +21,3 @@ struct SchoolSingleScoreDetailView: View {
         }
     }
 }
-
-struct SchoolSingleScoreDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SchoolSingleScoreDetailView(title: "Critical Reading", score: 678, totalScore: 800, color: .blue)
-    }
-}

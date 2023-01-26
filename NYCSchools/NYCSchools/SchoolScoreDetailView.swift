@@ -1,10 +1,3 @@
-//
-//  SchoolScoreDetailView.swift
-//  NYCSchools
-//
-//  Created by Arthur Liu on 1/25/23.
-//
-
 import SwiftUI
 
 struct SchoolScoreDetailView: View {
@@ -14,6 +7,8 @@ struct SchoolScoreDetailView: View {
     private static let subjects: [String] = ["Critical Reading", "Math", "Writing"]
     
     var body: some View {
+        /// There should be a cleaner way to make this DRY, but considering there's only three
+        /// subjects, doing that feels a bit over-engineering.
         if let criticalReadingScoreStr = scoreInfo.criticalReadingScore,
            let criticalReadingScore = Int(criticalReadingScoreStr) {
             SchoolSingleScoreDetailView(
@@ -44,8 +39,3 @@ struct SchoolScoreDetailView: View {
     }
 }
 
-struct SchoolScoreDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SchoolScoreDetailView(scoreInfo: .init(dbn: "123", criticalReadingScore: "678", mathScore: "555", writingScore: "444"))
-    }
-}

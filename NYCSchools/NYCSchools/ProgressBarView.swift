@@ -24,9 +24,3 @@ struct ProgressBarView: View {
         .frame(height: 18.0)
     }
 }
-
-struct ProgressBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProgressBarView(value: 0.314159, color: .pink)
-    }
-}
