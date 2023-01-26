@@ -23,6 +23,7 @@ struct SchoolListView: View {
                             }
                         }
                     }
+                    
                     // Footer to trigger reload
                     switch vm.loadingState {
                     case .loaded, .notStarted:

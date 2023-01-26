@@ -11,13 +11,14 @@ struct SchoolSingleScoreDetailView: View {
             HStack() {
                 Text(title)
                 Spacer()
-                HStack(spacing: 0) {
+                HStack(alignment: .bottom, spacing: 0) {
                     Text("\(score)")
+                        .font(.system(.title2))
                         .bold()
                     Text("/\(totalScore)")
                 }
             }
-            ProgressBarView(value: CGFloat(score) / CGFloat(totalScore), color: color)
+            ProgressBarView(progress: CGFloat(score) / CGFloat(totalScore), color: color)
         }
     }
 }

@@ -19,7 +19,7 @@ struct SchoolDetailMapView: View {
                 coordinateRegion: .constant(
                     MKCoordinateRegion(
                         center: center,
-                        span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+                        span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
                     )),
                 annotationItems: [MarkerCoordinate(coordinate: center)]
             ) { MapMarker(coordinate: $0.coordinate) }

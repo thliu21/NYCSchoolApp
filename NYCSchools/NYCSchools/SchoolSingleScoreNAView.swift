@@ -12,7 +12,7 @@ struct SchoolSingleScoreNAView: View {
                 Text("(Unavailable)")
                     .foregroundColor(.gray)
             }
-            ProgressBarView(value: 0, color: color)
+            ProgressBarView(progress: 0, color: color)
         }
     }
 }
