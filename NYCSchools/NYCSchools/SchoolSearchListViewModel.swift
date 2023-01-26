@@ -21,19 +21,19 @@ class SchoolSearchListViewModel: ObservableObject {
                 return false
             }
         }
-        
+
         case notStarted
         case loading
         case loaded([SchoolInfo])
         case failed
     }
-    
+
     @Published var search: String = ""
     @Published var loadingState: LoadingState = .notStarted
-    
+
     private var cancellables = Set<AnyCancellable>()
     private var api: SchoolDirectoryAPIProtocol
-    
+
     func fetchSchoolWithSearch() {
         guard .loading != loadingState else { return }
         loadingState = .loading
@@ -44,7 +44,7 @@ class SchoolSearchListViewModel: ObservableObject {
                 switch completion {
                 case .finished:
                     break
-                case .failure(_):
+                case .failure:
                     self.loadingState = .failed
                 }
             } receiveValue: { schools in
@@ -52,7 +52,7 @@ class SchoolSearchListViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     init(api: SchoolDirectoryAPIProtocol = NYCOpenDatabaseAPI()) {
         self.api = api
     }

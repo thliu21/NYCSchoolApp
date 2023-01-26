@@ -4,7 +4,7 @@ import SwiftUI
 struct SchoolDetailBasicInfoView: View {
     var title: String
     var content: String
-    
+
     var body: some View {
         HStack(alignment: .top) {
             Text(title)
@@ -15,7 +15,7 @@ struct SchoolDetailBasicInfoView: View {
 
 struct SchoolDetailBasicView: View {
     var schoolInfo: SchoolInfo
-    
+
     var body: some View {
         SchoolDetailBasicInfoView(title: "🏫", content: schoolInfo.schoolName)
         if let address = schoolInfo.address {

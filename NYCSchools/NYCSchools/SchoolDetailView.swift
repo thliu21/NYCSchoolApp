@@ -4,10 +4,10 @@ import MapKit
 struct SchoolDetailView: View {
     static private let fullScore = 800
     var schoolInfo: SchoolInfo
-    
+
     @StateObject private var vm: SchoolSATScoreViewModel
     @State private var region: MKCoordinateRegion?
-    
+
     var body: some View {
         List {
             Section("Basics") {
@@ -35,7 +35,7 @@ struct SchoolDetailView: View {
             vm.loadSATScore()
         }
     }
-    
+
     init(schoolInfo: SchoolInfo) {
         self.schoolInfo = schoolInfo
         _vm = StateObject(wrappedValue: SchoolSATScoreViewModel(dbn: schoolInfo.dbn))

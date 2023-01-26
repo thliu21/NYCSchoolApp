@@ -4,10 +4,10 @@ import SwiftUI
 /// to make it cleaner.
 struct SchoolSingleScoreNAView: View {
     let title: String
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4.0) {
-            HStack() {
+            HStack {
                 Text(title)
                 Spacer()
                 Text("(Unavailable)")

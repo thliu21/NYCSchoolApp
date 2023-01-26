@@ -5,7 +5,7 @@ import Combine
 final class FauxSchoolDirectoryAPI: SchoolDirectoryAPIProtocol {
     private let shouldFail: Bool
     private var batchCount: Int = 2
-    
+
     func fetchSchoolDirectory(offset: Int?, limit: Int?, search: String?) -> AnyPublisher<[NYCSchools.SchoolInfo], Error> {
         let mockSize = batchCount == 0 ? 1 : (limit ?? 10)
         let mockData = (0..<mockSize).map { num in
@@ -21,7 +21,7 @@ final class FauxSchoolDirectoryAPI: SchoolDirectoryAPIProtocol {
         }
         .eraseToAnyPublisher()
     }
-    
+
     init(shouldFail: Bool) {
         self.shouldFail = shouldFail
     }
@@ -29,7 +29,7 @@ final class FauxSchoolDirectoryAPI: SchoolDirectoryAPIProtocol {
 
 final class FauxSchoolSATScoresAPI: SchoolSATScoreAPIProtocol {
     private let shouldFail: Bool
-    
+
     func fetchSchoolSATScore(dbn: String) -> AnyPublisher<NYCSchools.SchoolSATScoreInfo, Error> {
         let mockData = SchoolSATScoreInfo(dbn: "123", criticalReadingScore: "345", mathScore: "456", writingScore: "777")
         return Just(mockData)
@@ -41,7 +41,7 @@ final class FauxSchoolSATScoresAPI: SchoolSATScoreAPIProtocol {
         }
         .eraseToAnyPublisher()
     }
-    
+
     init(shouldFail: Bool) {
         self.shouldFail = shouldFail
     }
@@ -49,7 +49,7 @@ final class FauxSchoolSATScoresAPI: SchoolSATScoreAPIProtocol {
 
 final class NYCSchoolsTests: XCTestCase {
     private var cancellables = Set<AnyCancellable>()
-    
+
     func testSchoolListViewModel() throws {
         let initialLoadingSize = Int.random(in: 10...30)
         let loadingSize = Int.random(in: 10...30)
@@ -81,7 +81,7 @@ final class NYCSchoolsTests: XCTestCase {
         }
         wait(for: [exp1, exp2, exp3], timeout: 10.0)
     }
-    
+
     func testSchoolListViewModelFail() throws {
         let initialLoadingSize = Int.random(in: 10...30)
         let loadingSize = Int.random(in: 10...30)
@@ -114,7 +114,7 @@ final class NYCSchoolsTests: XCTestCase {
         }
         wait(for: [exp1], timeout: 1.0)
     }
-    
+
     func testSchoolSATScoreViewModel() throws {
         let exp1 = XCTestExpectation()
         let vm = SchoolSATScoreViewModel(
@@ -136,7 +136,7 @@ final class NYCSchoolsTests: XCTestCase {
         vm.loadSATScore()
         wait(for: [exp1], timeout: 1.0)
     }
-    
+
     func testSchoolSATScoreViewModelFail() throws {
         let exp1 = XCTestExpectation()
         let vm = SchoolSATScoreViewModel(
@@ -145,7 +145,7 @@ final class NYCSchoolsTests: XCTestCase {
         )
         vm.$loadingState.sink { state in
             switch state {
-            case .loaded(_):
+            case .loaded:
                 XCTFail()
             case .failed:
                 exp1.fulfill()

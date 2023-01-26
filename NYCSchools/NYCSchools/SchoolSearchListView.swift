@@ -8,7 +8,7 @@ import SwiftUI
 struct SchoolSearchListView: View {
     @StateObject private var vm = SchoolSearchListViewModel()
     @FocusState private var focused: Bool
-    
+
     var body: some View {
         List {
             Section {
@@ -20,7 +20,7 @@ struct SchoolSearchListView: View {
                 }
                 .disabled(vm.search.count == 0 || .loading == vm.loadingState)
             }
-            
+
             Section("Result") {
                 if vm.search.count == 0,
                    .notStarted == vm.loadingState {

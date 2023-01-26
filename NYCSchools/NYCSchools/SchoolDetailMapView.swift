@@ -6,9 +6,9 @@ struct SchoolDetailMapView: View {
         let id = UUID()
         let coordinate: CLLocationCoordinate2D
     }
-    
+
     let schoolInfo: SchoolInfo
-    
+
     var body: some View {
         if let latStr = schoolInfo.latitude,
            let lat = Double(latStr),

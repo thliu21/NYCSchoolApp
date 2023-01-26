@@ -1,10 +1,9 @@
 import Foundation
 import SwiftUI
 
-// I was going to buid 
 struct SchoolListView: View {
     @StateObject private var vm = SchoolListViewModel()
-    
+
     var body: some View {
         NavigationView {
             List {
@@ -17,7 +16,7 @@ struct SchoolListView: View {
                             SchoolListItemView(school: school)
                         }
                     }
-                    
+
                     // Footer to trigger reload
                     switch vm.loadingState {
                     case .loaded, .notStarted:

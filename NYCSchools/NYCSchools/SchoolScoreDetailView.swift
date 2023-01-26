@@ -5,7 +5,7 @@ struct SchoolScoreDetailView: View {
     private static let totalScore = 800
     private static let colors: [Color] = [.blue, .pink, .green]
     private static let subjects: [String] = ["Critical Reading", "Math", "Writing"]
-    
+
     var body: some View {
         /// There should be a cleaner way to make this DRY, but considering there's only three
         /// subjects, doing that feels a bit over-engineering.
@@ -40,4 +40,3 @@ struct SchoolScoreDetailView: View {
         }
     }
 }
-

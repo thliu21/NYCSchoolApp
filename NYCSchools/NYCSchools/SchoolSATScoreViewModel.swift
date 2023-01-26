@@ -8,13 +8,13 @@ final class SchoolSATScoreViewModel: ObservableObject {
         case loaded(SchoolSATScoreInfo)
         case failed
     }
-    
+
     @Published var loadingState: LoadingState = .notStarted
-    
+
     private var cancellables = Set<AnyCancellable>()
     private let dbn: String
     private let api: SchoolSATScoreAPIProtocol
-    
+
     func loadSATScore() {
         guard case .notStarted = loadingState else {
             return
@@ -27,7 +27,7 @@ final class SchoolSATScoreViewModel: ObservableObject {
                 switch completion {
                 case .finished:
                     break
-                case .failure(_):
+                case .failure:
                     self.loadingState = .failed
                 }
             } receiveValue: { info in
@@ -35,7 +35,7 @@ final class SchoolSATScoreViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     init(dbn: String, api: SchoolSATScoreAPIProtocol = NYCOpenDatabaseAPI()) {
         self.dbn = dbn
         self.api = api

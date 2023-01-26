@@ -7,16 +7,16 @@ final class SchoolListViewModel: ObservableObject {
     enum APILoadingState {
         case notStarted, loading, loaded, failed, finished
     }
-    
+
     private let initialLoadingBatchSize: Int
     private let loadingBatchSize: Int
-    
+
     @Published var loadingState = APILoadingState.notStarted
     @Published var schoolInfo = [SchoolInfo]()
-    
+
     private var cancellables = Set<AnyCancellable>()
     private var api: SchoolDirectoryAPIProtocol
-    
+
     func loadMoreSchools() {
         switch loadingState {
         case .loading, .finished:
@@ -35,7 +35,7 @@ final class SchoolListViewModel: ObservableObject {
                 switch completion {
                 case .finished:
                     break
-                case .failure(_):
+                case .failure:
                     self.loadingState = .failed
                 }
             } receiveValue: { [weak self] schoolInfos in
@@ -46,7 +46,7 @@ final class SchoolListViewModel: ObservableObject {
             .store(in: &cancellables)
         }
     }
-    
+
     init(
         api: SchoolDirectoryAPIProtocol = NYCOpenDatabaseAPI(),
         initialLoadingBatchSize: Int = 40,

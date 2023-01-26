@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SchoolListItemView: View {
     let school: SchoolInfo
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(school.schoolName)

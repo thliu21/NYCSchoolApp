@@ -5,10 +5,10 @@ struct SchoolSingleScoreDetailView: View {
     let score: Int
     let totalScore: Int
     let color: Color
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4.0) {
-            HStack() {
+            HStack {
                 Text(title)
                 Spacer()
                 HStack(alignment: .bottom, spacing: 0) {

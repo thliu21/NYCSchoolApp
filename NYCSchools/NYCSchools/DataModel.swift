@@ -10,7 +10,7 @@ struct SchoolInfo: Decodable, Identifiable, Equatable {
     let latitude: String?
     let longitude: String?
     let city: String?
-    
+
     enum CodingKeys: String, CodingKey, CaseIterable {
         case dbn
         case schoolName = "school_name"
@@ -21,7 +21,7 @@ struct SchoolInfo: Decodable, Identifiable, Equatable {
         case bus
         case subway
     }
-    
+
     static func == (lhs: SchoolInfo, rhs: SchoolInfo) -> Bool {
         lhs.dbn == rhs.dbn
     }
@@ -33,7 +33,7 @@ struct SchoolSATScoreInfo: Decodable, Identifiable {
     let criticalReadingScore: String?
     let mathScore: String?
     let writingScore: String?
-    
+
     enum CodingKeys: String, CodingKey, CaseIterable {
         case dbn
         case criticalReadingScore = "sat_critical_reading_avg_score"

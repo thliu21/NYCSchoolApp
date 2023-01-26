@@ -28,14 +28,14 @@ struct NYCOpenDatabaseAPI {
         static let apiSelectParam = "$select"
         static let apiWhereParam = "$where"
         static let apiOrderValue = "dbn"
-        
+
         static func buildSearchParam(search: String) -> URLQueryItem {
             URLQueryItem(
                 name: NYCOpenDataConstants.apiWhereParam,
                 value: "lower(school_name) like '%\(search)%'"
             )
         }
-        
+
         static func buildSchoolDirectoryUrlRequest(
             offset: Int?,
             limit: Int?,
@@ -73,7 +73,7 @@ struct NYCOpenDatabaseAPI {
             request.httpMethod = "GET"
             return request
         }
-        
+
         static func buildSchoolSATScoreUrlRequest(dbn: String) -> URLRequest {
             guard var components = URLComponents(string: Self.baseUrl)
             else {
@@ -98,10 +98,10 @@ struct NYCOpenDatabaseAPI {
             return request
         }
     }
-    
+
     private static func fetchAPI(req: URLRequest) -> AnyPublisher<Data, Error> {
         Future<Data, Error> { promise in
-            let task = URLSession.shared.dataTask(with: req) { data, res, error in
+            let task = URLSession.shared.dataTask(with: req) { data, _, error in
                 if let data = data {
                     promise(.success(data))
                 } else if let error = error {
@@ -114,7 +114,7 @@ struct NYCOpenDatabaseAPI {
         .eraseToAnyPublisher()
     }
 }
-    
+
 extension NYCOpenDatabaseAPI: SchoolDirectoryAPIProtocol {
     func fetchSchoolDirectory(offset: Int?, limit: Int?, search: String? = nil) -> AnyPublisher<[SchoolInfo], Error> {
         Self.fetchAPI(
