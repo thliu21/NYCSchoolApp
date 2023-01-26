@@ -1,27 +1,28 @@
 import Foundation
 import Combine
 
-class SchoolListViewModel: ObservableObject {
+final class SchoolListViewModel: ObservableObject {
     enum APILoadingState {
-        case loading, loaded, failed, finished
+        case notStarted, loading, loaded, failed, finished
     }
     
-    private static let initialLoadingBatchSize = 40
-    private static let loadingBatchSize = 20
+    private let initialLoadingBatchSize: Int
+    private let loadingBatchSize: Int
     
-    @Published var loadingState = APILoadingState.loaded
+    @Published var loadingState = APILoadingState.notStarted
     @Published var schoolInfo = [SchoolInfo]()
     
     private var cancellables = Set<AnyCancellable>()
+    private var api: SchoolDirectoryAPIProtocol
     
     func loadMoreSchools() {
         switch loadingState {
         case .loading, .finished:
             return
-        case .loaded, .failed:
+        case .loaded, .failed, .notStarted:
             loadingState = .loading
-            let loadingSize = schoolInfo.count == 0 ? Self.initialLoadingBatchSize : Self.loadingBatchSize
-            NYCOpenDatabaseAPI.fetchSchoolDirectory(
+            let loadingSize = schoolInfo.count == 0 ? initialLoadingBatchSize : loadingBatchSize
+            api.fetchSchoolDirectory(
                 offset: schoolInfo.count,
                 limit: loadingSize
             )
@@ -31,8 +32,7 @@ class SchoolListViewModel: ObservableObject {
                 switch completion {
                 case .finished:
                     break
-                case .failure(let error):
-                    print(error)
+                case .failure(_):
                     self.loadingState = .failed
                 }
             } receiveValue: { [weak self] schoolInfos in
@@ -42,5 +42,16 @@ class SchoolListViewModel: ObservableObject {
             }
             .store(in: &cancellables)
         }
+    }
+    
+    init(
+        api: SchoolDirectoryAPIProtocol = NYCOpenDatabaseAPI(),
+        initialLoadingBatchSize: Int = 40,
+        loadingBatchSize: Int = 20
+    ) {
+        print("init")
+        self.api = api
+        self.initialLoadingBatchSize = initialLoadingBatchSize
+        self.loadingBatchSize = loadingBatchSize
     }
 }

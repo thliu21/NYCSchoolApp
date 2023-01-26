@@ -25,7 +25,7 @@ struct SchoolListView: View {
                     }
                     // Footer to trigger reload
                     switch vm.loadingState {
-                    case .loaded:
+                    case .loaded, .notStarted:
                         Text("(Loading...)")
                             .onAppear {
                                 vm.loadMoreSchools()

@@ -6,6 +6,14 @@ enum APIError: Error {
     case parsingError
 }
 
+protocol SchoolDirectoryAPIProtocol {
+    func fetchSchoolDirectory(offset: Int, limit: Int) -> AnyPublisher<[SchoolInfo], Error>
+}
+
+protocol SchoolSATScoreAPIProtocol {
+    func fetchSchoolSATScore(dbn: String) -> AnyPublisher<SchoolSATScoreInfo, Error>
+}
+
 struct NYCOpenDataConstants {
     static let appTokenParam = "X-App-Token"
     static let appToken = "JXCPPDJLwaLK3ejCW0e5XpYN0"
@@ -60,9 +68,8 @@ struct NYCOpenDataConstants {
 }
 
 struct NYCOpenDatabaseAPI {
-    static func fetchSchoolDirectory(offset: Int, limit: Int) -> AnyPublisher<[SchoolInfo], Error> {
-        let req = NYCOpenDataConstants.buildSchoolDirectoryUrlRequest(offset: offset, limit: limit)
-        return Future<Data, Error> { promise in
+    private static func fetchAPI(req: URLRequest) -> AnyPublisher<Data, Error> {
+        Future<Data, Error> { promise in
             let task = URLSession.shared.dataTask(with: req) { data, res, error in
                 if let data = data {
                     promise(.success(data))
@@ -73,25 +80,27 @@ struct NYCOpenDatabaseAPI {
             }
             task.resume()
         }
+        .eraseToAnyPublisher()
+    }
+}
+    
+extension NYCOpenDatabaseAPI: SchoolDirectoryAPIProtocol {
+    func fetchSchoolDirectory(offset: Int, limit: Int) -> AnyPublisher<[SchoolInfo], Error> {
+        Self.fetchAPI(
+            req: NYCOpenDataConstants.buildSchoolDirectoryUrlRequest(offset: offset, limit: limit)
+        )
         .tryMap { data in
             try JSONDecoder().decode([SchoolInfo].self, from: data)
         }
         .eraseToAnyPublisher()
     }
-    
-    static func fetchSchoolSATScore(dbn: String) -> AnyPublisher<SchoolSATScoreInfo, Error> {
-        let req = NYCOpenDataConstants.buildSchoolSATScoreUrlRequest(dbn: dbn)
-        return Future<Data, Error> { promise in
-            let task = URLSession.shared.dataTask(with: req) { data, res, error in
-                if let data = data {
-                    promise(.success(data))
-                } else if let error = error {
-                    promise(.failure(error))
-                }
-                promise(.failure(APIError.noDataError))
-            }
-            task.resume()
-        }
+}
+
+extension NYCOpenDatabaseAPI: SchoolSATScoreAPIProtocol {
+    func fetchSchoolSATScore(dbn: String) -> AnyPublisher<SchoolSATScoreInfo, Error> {
+        Self.fetchAPI(
+            req: NYCOpenDataConstants.buildSchoolSATScoreUrlRequest(dbn: dbn)
+        )
         .tryMap { data in
             try JSONDecoder().decode([SchoolSATScoreInfo].self, from: data)
         }

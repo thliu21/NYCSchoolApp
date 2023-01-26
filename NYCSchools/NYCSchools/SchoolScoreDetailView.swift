@@ -9,6 +9,8 @@ struct SchoolScoreDetailView: View {
     var body: some View {
         /// There should be a cleaner way to make this DRY, but considering there's only three
         /// subjects, doing that feels a bit over-engineering.
+        /// Also, it seems that if one score is missing, other two are also likely to be
+        /// missing. However there's no document indicating that's always the case.
         if let criticalReadingScoreStr = scoreInfo.criticalReadingScore,
            let criticalReadingScore = Int(criticalReadingScoreStr) {
             SchoolSingleScoreDetailView(
