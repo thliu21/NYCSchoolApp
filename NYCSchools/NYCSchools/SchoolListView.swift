@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 
+// I was going to buid 
 struct SchoolListView: View {
     @StateObject private var vm = SchoolListViewModel()
     
@@ -13,14 +14,7 @@ struct SchoolListView: View {
                         NavigationLink {
                             SchoolDetailView(schoolInfo: school)
                         } label: {
-                            VStack(alignment: .leading) {
-                                Text(school.schoolName)
-                                if let city = school.city {
-                                    Text(city)
-                                        .font(.system(.footnote))
-                                        .foregroundColor(.gray)
-                                }
-                            }
+                            SchoolListItemView(school: school)
                         }
                     }
                     
@@ -48,9 +42,10 @@ struct SchoolListView: View {
             }
             .navigationTitle("NYC High Schools")
             .toolbar {
-                if vm.loadingState == .loading {
-                    ProgressView()
-                        .progressViewStyle(.circular)
+                NavigationLink {
+                    SchoolSearchListView()
+                } label: {
+                    Image(systemName: "magnifyingglass")
                 }
             }
         }

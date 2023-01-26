@@ -6,7 +6,7 @@ final class FauxSchoolDirectoryAPI: SchoolDirectoryAPIProtocol {
     private let shouldFail: Bool
     private var batchCount: Int = 2
     
-    func fetchSchoolDirectory(offset: Int, limit: Int) -> AnyPublisher<[NYCSchools.SchoolInfo], Error> {
+    func fetchSchoolDirectory(offset: Int, limit: Int, search: String?) -> AnyPublisher<[NYCSchools.SchoolInfo], Error> {
         let mockData = (0..<(batchCount == 0 ? 1 : limit)).map { num in
             SchoolInfo(dbn: String(num), schoolName: "Snoop Dogg High", bus: "M1", subway: "A", address: "123 Foo st.", latitude: "123.0", longitude: "456.0", city: "Somewhere")
         }
@@ -61,7 +61,6 @@ final class NYCSchoolsTests: XCTestCase {
             loadingBatchSize: loadingSize
         )
         vm.$schoolInfo.sink { schools in
-            print(schools.count)
             switch schools.count {
             case initialLoadingSize:
                 exp1.fulfill()
@@ -108,7 +107,7 @@ final class NYCSchoolsTests: XCTestCase {
         }
         .store(in: &cancellables)
         (1...3).forEach { num in
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(num) / 10.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(num) / 5.0) {
                 vm.loadMoreSchools()
             }
         }

@@ -10,7 +10,7 @@
 		1837F38829819C2700C21AE5 /* SchoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F38729819C2700C21AE5 /* SchoolListView.swift */; };
 		1837F38A29819C3D00C21AE5 /* SchoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F38929819C3D00C21AE5 /* SchoolDetailView.swift */; };
 		1837F38E29819CDF00C21AE5 /* NYCOpenDatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F38D29819CDF00C21AE5 /* NYCOpenDatabaseAPI.swift */; };
-		1837F3902981CF2600C21AE5 /* NYCOpenDatabaseAPIDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F38F2981CF2600C21AE5 /* NYCOpenDatabaseAPIDataStruct.swift */; };
+		1837F3902981CF2600C21AE5 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F38F2981CF2600C21AE5 /* DataModel.swift */; };
 		1837F3922981D3BF00C21AE5 /* SchoolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F3912981D3BF00C21AE5 /* SchoolListViewModel.swift */; };
 		1837F3942981F0E300C21AE5 /* SchoolSATScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F3932981F0E300C21AE5 /* SchoolSATScoreViewModel.swift */; };
 		1837F3962981FBAA00C21AE5 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F3952981FBAA00C21AE5 /* ProgressBarView.swift */; };
@@ -19,6 +19,9 @@
 		1837F39E2982252F00C21AE5 /* SchoolDetailBasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F39D2982252F00C21AE5 /* SchoolDetailBasicView.swift */; };
 		1837F3A029822BA500C21AE5 /* SchoolSingleScoreNAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F39F29822BA500C21AE5 /* SchoolSingleScoreNAView.swift */; };
 		1837F3A229822D8700C21AE5 /* SchoolDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837F3A129822D8700C21AE5 /* SchoolDetailMapView.swift */; };
+		18B4615129832F97005F9CD8 /* SchoolSearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4615029832F97005F9CD8 /* SchoolSearchListView.swift */; };
+		18B4615329832FBC005F9CD8 /* SchoolSearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4615229832FBC005F9CD8 /* SchoolSearchListViewModel.swift */; };
+		18B4615529832FD8005F9CD8 /* SchoolListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4615429832FD8005F9CD8 /* SchoolListItemView.swift */; };
 		18CC61F029805F6800758380 /* NYCSchoolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC61EF29805F6800758380 /* NYCSchoolsApp.swift */; };
 		18CC61F429805F6900758380 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CC61F329805F6900758380 /* Assets.xcassets */; };
 		18CC61F729805F6900758380 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CC61F629805F6900758380 /* Preview Assets.xcassets */; };
@@ -48,7 +51,7 @@
 		1837F38729819C2700C21AE5 /* SchoolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolListView.swift; sourceTree = "<group>"; };
 		1837F38929819C3D00C21AE5 /* SchoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetailView.swift; sourceTree = "<group>"; };
 		1837F38D29819CDF00C21AE5 /* NYCOpenDatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYCOpenDatabaseAPI.swift; sourceTree = "<group>"; };
-		1837F38F2981CF2600C21AE5 /* NYCOpenDatabaseAPIDataStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYCOpenDatabaseAPIDataStruct.swift; sourceTree = "<group>"; };
+		1837F38F2981CF2600C21AE5 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		1837F3912981D3BF00C21AE5 /* SchoolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolListViewModel.swift; sourceTree = "<group>"; };
 		1837F3932981F0E300C21AE5 /* SchoolSATScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSATScoreViewModel.swift; sourceTree = "<group>"; };
 		1837F3952981FBAA00C21AE5 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
@@ -57,6 +60,9 @@
 		1837F39D2982252F00C21AE5 /* SchoolDetailBasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetailBasicView.swift; sourceTree = "<group>"; };
 		1837F39F29822BA500C21AE5 /* SchoolSingleScoreNAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSingleScoreNAView.swift; sourceTree = "<group>"; };
 		1837F3A129822D8700C21AE5 /* SchoolDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetailMapView.swift; sourceTree = "<group>"; };
+		18B4615029832F97005F9CD8 /* SchoolSearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchListView.swift; sourceTree = "<group>"; };
+		18B4615229832FBC005F9CD8 /* SchoolSearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchListViewModel.swift; sourceTree = "<group>"; };
+		18B4615429832FD8005F9CD8 /* SchoolListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolListItemView.swift; sourceTree = "<group>"; };
 		18CC61EC29805F6800758380 /* NYCSchools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYCSchools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18CC61EF29805F6800758380 /* NYCSchoolsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYCSchoolsApp.swift; sourceTree = "<group>"; };
 		18CC61F329805F6900758380 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,6 +125,9 @@
 				18CC61EF29805F6800758380 /* NYCSchoolsApp.swift */,
 				1837F38729819C2700C21AE5 /* SchoolListView.swift */,
 				1837F3912981D3BF00C21AE5 /* SchoolListViewModel.swift */,
+				18B4615029832F97005F9CD8 /* SchoolSearchListView.swift */,
+				18B4615229832FBC005F9CD8 /* SchoolSearchListViewModel.swift */,
+				18B4615429832FD8005F9CD8 /* SchoolListItemView.swift */,
 				1837F38929819C3D00C21AE5 /* SchoolDetailView.swift */,
 				1837F39D2982252F00C21AE5 /* SchoolDetailBasicView.swift */,
 				1837F3A129822D8700C21AE5 /* SchoolDetailMapView.swift */,
@@ -128,7 +137,7 @@
 				1837F3932981F0E300C21AE5 /* SchoolSATScoreViewModel.swift */,
 				1837F3952981FBAA00C21AE5 /* ProgressBarView.swift */,
 				1837F38D29819CDF00C21AE5 /* NYCOpenDatabaseAPI.swift */,
-				1837F38F2981CF2600C21AE5 /* NYCOpenDatabaseAPIDataStruct.swift */,
+				1837F38F2981CF2600C21AE5 /* DataModel.swift */,
 				18CC61F329805F6900758380 /* Assets.xcassets */,
 				18CC61F529805F6900758380 /* Preview Content */,
 			);
@@ -291,12 +300,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1837F3A029822BA500C21AE5 /* SchoolSingleScoreNAView.swift in Sources */,
+				18B4615529832FD8005F9CD8 /* SchoolListItemView.swift in Sources */,
 				18CC61F029805F6800758380 /* NYCSchoolsApp.swift in Sources */,
 				1837F3A229822D8700C21AE5 /* SchoolDetailMapView.swift in Sources */,
 				1837F38829819C2700C21AE5 /* SchoolListView.swift in Sources */,
+				18B4615129832F97005F9CD8 /* SchoolSearchListView.swift in Sources */,
 				1837F3982982099100C21AE5 /* SchoolScoreDetailView.swift in Sources */,
 				1837F3922981D3BF00C21AE5 /* SchoolListViewModel.swift in Sources */,
-				1837F3902981CF2600C21AE5 /* NYCOpenDatabaseAPIDataStruct.swift in Sources */,
+				18B4615329832FBC005F9CD8 /* SchoolSearchListViewModel.swift in Sources */,
+				1837F3902981CF2600C21AE5 /* DataModel.swift in Sources */,
 				1837F3942981F0E300C21AE5 /* SchoolSATScoreViewModel.swift in Sources */,
 				1837F38E29819CDF00C21AE5 /* NYCOpenDatabaseAPI.swift in Sources */,
 				1837F3962981FBAA00C21AE5 /* ProgressBarView.swift in Sources */,

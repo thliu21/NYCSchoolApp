@@ -1,7 +1,6 @@
 import Foundation
-import MapKit
 
-struct SchoolInfo: Decodable, Identifiable {
+struct SchoolInfo: Decodable, Identifiable, Equatable {
     var id: String { dbn }
     let dbn: String
     let schoolName: String
@@ -12,7 +11,7 @@ struct SchoolInfo: Decodable, Identifiable {
     let longitude: String?
     let city: String?
     
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey, CaseIterable {
         case dbn
         case schoolName = "school_name"
         case latitude
@@ -21,6 +20,10 @@ struct SchoolInfo: Decodable, Identifiable {
         case city
         case bus
         case subway
+    }
+    
+    static func == (lhs: SchoolInfo, rhs: SchoolInfo) -> Bool {
+        lhs.dbn == rhs.dbn
     }
 }
 
@@ -31,7 +34,7 @@ struct SchoolSATScoreInfo: Decodable, Identifiable {
     let mathScore: String?
     let writingScore: String?
     
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey, CaseIterable {
         case dbn
         case criticalReadingScore = "sat_critical_reading_avg_score"
         case mathScore = "sat_math_avg_score"

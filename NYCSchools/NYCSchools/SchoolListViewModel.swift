@@ -1,6 +1,9 @@
 import Foundation
 import Combine
 
+/// ViewModel to display the list of schools
+/// This VM has pagination in place to refill when
+/// user reaches the bottom of the list
 final class SchoolListViewModel: ObservableObject {
     enum APILoadingState {
         case notStarted, loading, loaded, failed, finished
@@ -24,7 +27,8 @@ final class SchoolListViewModel: ObservableObject {
             let loadingSize = schoolInfo.count == 0 ? initialLoadingBatchSize : loadingBatchSize
             api.fetchSchoolDirectory(
                 offset: schoolInfo.count,
-                limit: loadingSize
+                limit: loadingSize,
+                search: nil
             )
             .receive(on: RunLoop.main)
             .sink { [weak self] completion in
@@ -49,7 +53,6 @@ final class SchoolListViewModel: ObservableObject {
         initialLoadingBatchSize: Int = 40,
         loadingBatchSize: Int = 20
     ) {
-        print("init")
         self.api = api
         self.initialLoadingBatchSize = initialLoadingBatchSize
         self.loadingBatchSize = loadingBatchSize

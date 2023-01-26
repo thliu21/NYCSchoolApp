@@ -18,7 +18,7 @@ struct SchoolScoreDetailView: View {
             )
             .padding(4.0)
         } else {
-            SchoolSingleScoreNAView(title: Self.subjects[0], color: Self.colors[0])
+            SchoolSingleScoreNAView(title: Self.subjects[0])
         }
         if let mathScoreStr = scoreInfo.mathScore,
            let mathScore = Int(mathScoreStr) {
@@ -27,7 +27,7 @@ struct SchoolScoreDetailView: View {
             )
             .padding(4.0)
         } else {
-            SchoolSingleScoreNAView(title: Self.subjects[1], color: Self.colors[1])
+            SchoolSingleScoreNAView(title: Self.subjects[1])
         }
         if let writingScoreStr = scoreInfo.writingScore,
            let writingScore = Int(writingScoreStr) {
@@ -36,7 +36,7 @@ struct SchoolScoreDetailView: View {
             )
             .padding(4.0)
         } else {
-            SchoolSingleScoreNAView(title: Self.subjects[2], color: Self.colors[2])
+            SchoolSingleScoreNAView(title: Self.subjects[2])
         }
     }
 }

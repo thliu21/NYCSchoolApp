@@ -1,8 +1,9 @@
 import SwiftUI
 
+/// If I got more time, this will be merged into SchoolSingleScoreDetailView
+/// to make it cleaner.
 struct SchoolSingleScoreNAView: View {
     let title: String
-    let color: Color
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4.0) {
@@ -12,7 +13,6 @@ struct SchoolSingleScoreNAView: View {
                 Text("(Unavailable)")
                     .foregroundColor(.gray)
             }
-            ProgressBarView(progress: 0, color: color)
         }
     }
 }
