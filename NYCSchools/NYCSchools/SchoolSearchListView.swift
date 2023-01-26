@@ -1,13 +1,10 @@
-//
-//  SchoolSearchListView.swift
-//  NYCSchools
-//
-//  Created by Arthur Liu on 1/26/23.
-//
-
 import Foundation
 import SwiftUI
 
+/// Ideally, this should be part of the main list.
+/// Also, we should search as user typing in, but I noticed that the API
+/// is not particularly quick and it feels quite laggy. Thus, I added a
+/// button to manually trigger the search
 struct SchoolSearchListView: View {
     @StateObject private var vm = SchoolSearchListViewModel()
     @FocusState private var focused: Bool
@@ -17,13 +14,11 @@ struct SchoolSearchListView: View {
             Section {
                 TextField("Search", text: $vm.search)
                     .focused($focused)
-                if vm.search.count > 0 {
-                    Button("Submit") {
-                        vm.fetchSchoolWithSearch()
-                        focused = false
-                    }
-                    .disabled(.loading == vm.loadingState)
+                Button("Submit") {
+                    vm.fetchSchoolWithSearch()
+                    focused = false
                 }
+                .disabled(vm.search.count == 0 || .loading == vm.loadingState)
             }
             
             Section("Result") {

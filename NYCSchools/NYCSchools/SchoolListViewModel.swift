@@ -1,7 +1,6 @@
 import Foundation
 import Combine
 
-/// ViewModel to display the list of schools
 /// This VM has pagination in place to refill when
 /// user reaches the bottom of the list
 final class SchoolListViewModel: ObservableObject {
